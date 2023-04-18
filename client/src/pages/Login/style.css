@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    background: linear-gradient(86deg, rgba(54,211,223,1) 0%, rgba(164,96,156,1) 100%);
+    height: 100vh;
+}
+
+.login-container {
+    height: 70%;
+    width: 60%;
+    background-color: #343f7198;
+    color: #E9D8E4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+
+.login-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-left {
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid #5e5c5c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-icon {
+    font-size: 3rem;
+    transform: scaleX(-1);
+}
+
+.login-left form,.login-left form div  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.login-left form div input {
+    width: 300px;
+    background: none;
+    height: 40px;
+    border: none;
+    border-bottom: 1px solid #E9D8E4;
+    padding: 5px;
+    font-size: 25px;
+    border-radius: 5px;
+}
+.login-left form div input:focus,.login-left form div input::selection,.login-left form div input:focus, .login-left form div input::selection {
+    background-color: #697dd376;
+}
+
+.login-left form button {
+    margin-top: 20px;
+}
+
+.login-right h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.login-right a {
+    margin-top: 20px;
+    color: #E9D8E4;
+    text-decoration: none;
+}
+
+.login-right a:hover {
+   color: rgba(103, 4, 103, 0.923);
+   transition: ease-in-out 0.5s;
+}

@@ -1,5 +1,5 @@
 const User = require('../models/users.model');
-
+const bcrypt = require('bcryptjs');
 
 exports.create = async (req,res) => {
     try {
@@ -58,6 +58,39 @@ exports.getAll = async (req,res) => {
         res.status(500).send({
             message: 'An error occurred while retrieving Users',
             error: err.message
+        });
+    }
+};
+
+exports.login = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        // check if user exists
+        const user = await User.getByUsername(username);
+        if (!user) {
+            res.status(401).send({
+                message: 'Invalid username or password'
+            });
+            return;
+        }
+
+        // check if password is correct
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            res.status(401).send({
+                message: 'Invalid username or password'
+            });
+            return;
+        }
+
+        res.status(200).send({
+            message: 'Login successful',
+            user: user
+        });
+    } catch (err) {
+        res.status(500).send({
+            message: err.message || 'Some error occurred while logging in'
         });
     }
 };
