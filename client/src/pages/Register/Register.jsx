@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css'
 import Footer from '../../components/Footer';
 import Button from '../../components/Button';
@@ -9,6 +9,7 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,8 +29,13 @@ const Register = () => {
       }
     } catch (error) {
       console.error(error);
+      setError('Username or email already exists');
     }
   };
+
+  useEffect(() => {
+    setError(null);
+  }, [username, email, password]);
 
   return (
     <>
@@ -77,6 +83,7 @@ const Register = () => {
                         </div>
                         <Button type="submit" buttonClass="main-btn"> Register </Button>
                     </form>
+                    {error && <p className="error">{error}</p>}
                 </div>
             </div>
         </div>

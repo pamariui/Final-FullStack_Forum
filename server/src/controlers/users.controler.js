@@ -18,6 +18,7 @@ exports.create = async (req,res) => {
             email 
         } = req.body;
 
+
         if (!username || !password || !email) {
             res.status(400).send({
                 message: 'All the fields must be filled'
@@ -28,7 +29,8 @@ exports.create = async (req,res) => {
         const user = new User({
             username: username,
             password: password,
-            email: email
+            email: email,
+            created_at: new Date()
         });
 
         await User.create(user);
@@ -40,9 +42,11 @@ exports.create = async (req,res) => {
 
     } catch (err) {
 
-        res.status(500).send({
-            message: err.message || 'Some error occurred while creating the User.'
-        });
+        if (err.message === 'user_exist') {
+            res.status(409).send({ message: 'Username already taken'});
+        } else {
+            res.status(500).send({ message: 'Error retrieving User with id '});
+        }
     }    
 };
 

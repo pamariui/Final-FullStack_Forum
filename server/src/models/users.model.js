@@ -18,6 +18,16 @@ User.create = async (newUser, result) => {
         const hashedPassword = await bcrypt.hash(newUser.password, 10);
         newUser.password = hashedPassword;
 
+
+        const checkQuery = `SELECT * 
+        FROM users 
+        WHERE username = ?`;
+        const [userRows] = await con.query(checkQuery,newUser.username);
+
+        if(userRows.length === 1) {
+            throw {message: 'user_exist'};
+        }
+
         const query = 'INSERT INTO users SET ?';
 
         con.query(query,newUser, (err,res) => {

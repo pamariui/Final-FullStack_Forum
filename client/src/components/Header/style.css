@@ -1,7 +1,60 @@
+header {
+    border-bottom: 2px solid #666;
+    background-color: #23e5f3;
+}
+
 .header {
     height: 80px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #666;
+    margin: 0 80px;
 }
+
+.header-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    background: linear-gradient(170deg,rgb(255, 0, 200)55%,rgb(43, 222, 253)65%);
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.header-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-user h3 {
+    margin-right: 20px;
+}
+
+.user-icon {
+    font-size: 1.5rem;
+    
+}
+.user-icon:hover {
+    color:#f02af0;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
+} 
+
+.user-popup {
+    position: absolute;
+    top: 70px;
+    right: 80px;
+    background-color: white;
+    border: 1px solid #dddddd;
+    border-radius: 22px;
+    width: 250px;
+    box-shadow: 0px 4px 7px 1px #dddddd;
+    z-index: 3;
+  }
