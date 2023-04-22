@@ -3,11 +3,11 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: absolute;
+    position: sticky;
     z-index: 5;
     bottom: 10px;
 }
-p {
+footer p {
     color: #fff;
     text-align: center;
     font-size: 12px;

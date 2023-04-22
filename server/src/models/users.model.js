@@ -19,13 +19,18 @@ User.create = async (newUser, result) => {
         newUser.password = hashedPassword;
 
 
-        const checkQuery = `SELECT * 
-        FROM users 
-        WHERE username = ?`;
-        const [userRows] = await con.query(checkQuery,newUser.username);
-
+        const checkQueryUsername = 'SELECT * FROM users WHERE username = ?';
+        const [userRows] = await con.query(checkQueryUsername, newUser.username);
+       
         if(userRows.length === 1) {
             throw {message: 'user_exist'};
+        }
+
+        const checkQueryEmail = 'SELECT * FROM users WHERE email = ?';
+        const [emailRows] = await con.query(checkQueryEmail, newUser.email);
+        console.log(emailRows.length);
+        if(emailRows.length > 1) {
+            throw {message: 'email_exist'};
         }
 
         const query = 'INSERT INTO users SET ?';
@@ -171,6 +176,24 @@ User.login = async (username, password) => {
         throw err;
     }
 };
-  
+
+User.delete = async (id) => {
+    try {
+        const con = await mysql.createConnection(mysqlConfig);
+        const query = 'DELETE FROM users WHERE id = ?';
+        const [results] = await con.execute(query, [id]);
+        
+        if (results.affectedRows === 0) {
+            throw { message: 'not_found' };
+        }
+
+        await con.end();
+
+    } catch (err) {
+
+        console.log(err);
+        throw err;
+    }
+};
 
 module.exports = User;

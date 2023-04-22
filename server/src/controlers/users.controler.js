@@ -44,6 +44,8 @@ exports.create = async (req,res) => {
 
         if (err.message === 'user_exist') {
             res.status(409).send({ message: 'Username already taken'});
+        } else if(err.message === 'email_exist') {
+            res.status(409).send({ message: 'Username already taken'});
         } else {
             res.status(500).send({ message: 'Error retrieving User with id '});
         }
