@@ -1,0 +1,72 @@
+.question {
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid #4799ad;
+    
+    width: 100%;
+    padding: 10px;
+  }
+
+  .question .card-header {
+    padding: 10px;
+    border-bottom:  1px solid #666 ;
+    width: 100%;
+    
+  }
+
+  .question .card-header h2 {
+    color: #b92fdb;
+  }
+
+  .question .card-header h3 {
+    color: #1c8ba7;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+
+  .question .card-body {
+    padding: 10px;
+    min-height: 60px;
+    border-bottom: 1px solid #666;
+  }
+
+  .question .card-footer p{
+    font-weight: 200;
+    font-size: 0.8rem;
+  }
+
+  .question .card-footer h3 {
+    font-weight: 400;
+    color: #1c8ba7;
+  }
+
+  .answer  .card-header {
+    padding: 10px;
+    border-bottom:  1px solid #666 ;
+    width: 100%;
+    
+  }
+
+  .answer {
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    border-bottom: 1px solid #4799ad;
+
+    width: 100%;
+    padding: 10px;
+  }
+  .answer  .card-header h3 {
+    color:#1c8ba7;
+    font-weight: 300;
+    align-self: flex-start;
+  }
+
+  .answer .card-body {
+    padding: 10px;
+    min-height: 60px;
+    border-bottom: 1px solid #666;
+  }

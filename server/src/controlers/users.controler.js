@@ -1,5 +1,5 @@
 const User = require('../models/users.model');
-
+const bcrypt = require('bcryptjs');
 
 exports.create = async (req,res) => {
     try {
@@ -18,6 +18,7 @@ exports.create = async (req,res) => {
             email 
         } = req.body;
 
+
         if (!username || !password || !email) {
             res.status(400).send({
                 message: 'All the fields must be filled'
@@ -28,7 +29,8 @@ exports.create = async (req,res) => {
         const user = new User({
             username: username,
             password: password,
-            email: email
+            email: email,
+            created_at: new Date()
         });
 
         await User.create(user);
@@ -40,9 +42,13 @@ exports.create = async (req,res) => {
 
     } catch (err) {
 
-        res.status(500).send({
-            message: err.message || 'Some error occurred while creating the User.'
-        });
+        if (err.message === 'user_exist') {
+            res.status(409).send({ message: 'Username already taken'});
+        } else if(err.message === 'email_exist') {
+            res.status(409).send({ message: 'Username already taken'});
+        } else {
+            res.status(500).send({ message: 'Error retrieving User with id '});
+        }
     }    
 };
 
@@ -58,6 +64,39 @@ exports.getAll = async (req,res) => {
         res.status(500).send({
             message: 'An error occurred while retrieving Users',
             error: err.message
+        });
+    }
+};
+
+exports.login = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        // check if user exists
+        const user = await User.getByUsername(username);
+        if (!user) {
+            res.status(401).send({
+                message: 'Invalid username or password'
+            });
+            return;
+        }
+
+        // check if password is correct
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            res.status(401).send({
+                message: 'Invalid username or password'
+            });
+            return;
+        }
+
+        res.status(200).send({
+            message: 'Login successful',
+            user: user
+        });
+    } catch (err) {
+        res.status(500).send({
+            message: err.message || 'Some error occurred while logging in'
         });
     }
 };

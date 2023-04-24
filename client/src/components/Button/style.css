@@ -1,0 +1,42 @@
+.main-btn {
+    width: 250px;
+    height: 50px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+    background-color: #ffffff;
+    transition: 0.5s ease-in-out;
+}
+
+.main-btn:hover {
+    box-shadow: rgba(0, 0, 0, 0.548) 0px 2px 5px -1px, rgba(0, 0, 0, 0.532) 0px 1px 3px -1px;
+    background-color: rgba(103, 4, 103, 0.923);
+   
+}
+
+.create {
+    background-color: rgb(153, 87, 153);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+a .create p{
+    text-decoration: none;
+}
+
+
+.create p {
+    padding: 0 8px;
+    font-size: 1rem;
+    color:#ffffff;
+    font-weight: 600;
+}
+.create:hover {
+    background-color:#448baa;
+    transition: ease-in-out 0.5s;
+}
