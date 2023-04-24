@@ -3,9 +3,9 @@ footer {
     align-items: center;
     justify-content: center;
     width: 100%;
-    position: sticky;
+    position: fixed;
     z-index: 5;
-    bottom: 10px;
+    bottom: 20px;
 }
 footer p {
     color: #fff;

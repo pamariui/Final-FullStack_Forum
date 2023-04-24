@@ -1,4 +1,6 @@
 import React from 'react'
+import './style.css'
+
 
 const Card = ({
     title,
@@ -6,16 +8,17 @@ const Card = ({
     content,
     posted,
     user,
-    childer
+    cardClass,
+    children
 }) => {
   return (
-    <div className="card">
+    <div className={cardClass}  >
         <div className='card-header'>
             <h2>{title}</h2>
             {category ? (
                 <h3>Category: {category}</h3>
                 ) : (
-                <h3>answer</h3>
+                <h3>answer by {user}</h3>
             )}
         </div>
         <div className="card-body">
@@ -23,8 +26,13 @@ const Card = ({
         </div>
         <div className="card-footer">
             <p>{posted}</p>
-            <h3>{user}</h3>
+            {!category ? (
+                <></>
+                ) : (
+                <h3>answer by {user}</h3>
+            )}
         </div>
+            {children}
     </div>
   )
 }

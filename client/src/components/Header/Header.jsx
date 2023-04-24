@@ -35,12 +35,12 @@ const Header = ({username}) => {
     <header>
         <div className='header'>
             <Link className="header-logo" to={'/'}>
-                <RiIcon.RiChatSmile3Line className='logo-icon'/>
-                <h6>Forum</h6>
+                <RiIcon.RiHome4Fill className='logo-icon'/>
+                
             </Link>
             
             <div className='header-user'>
-                <h3>Welcome, {modifiedUsername}</h3>
+                <h3>Welcome, {modifiedUsername ? modifiedUsername : 'please login'}</h3>
                 <RiIcon.RiUser5Line className='user-icon' onClick={togglePopup}/>
             </div>
             {isPopupOpen && (

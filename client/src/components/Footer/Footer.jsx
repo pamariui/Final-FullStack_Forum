@@ -5,7 +5,7 @@ import * as FaIcon from "react-icons/fa";
 const Footer= ({copy, years,color}) => {
   return (
     <footer>
-        <p style={color= {color}}>
+        <p style={color = {color}}>
         {copy} <FaIcon.FaRegCopyright className='icon'/> {years}
         </p>
         

@@ -1,0 +1,15 @@
+.like-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.like-btns button {
+    margin: 10px;
+}
+@media only screen and (max-width: 600px) {
+    .like-btns {
+        flex-direction: column;
+    }
+}

@@ -91,3 +91,22 @@
     color: rgba(103, 4, 103, 0.923);
    transition: ease-in-out 0.5s;
 }
+
+@media only screen and (max-width: 600px) {
+    .register-container, container {
+        flex-direction: column;
+        justify-content: space-around;
+        width: 95%;
+        height: 90%;
+    }
+
+    .register-left{
+        border: none;
+    }
+    .register-right {
+        margin-bottom: 50px;
+    }
+    .register-text h3 {
+        display: none;
+    }
+  }

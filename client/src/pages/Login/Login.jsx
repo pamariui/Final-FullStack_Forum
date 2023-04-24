@@ -60,7 +60,7 @@ const Login = () => {
           </div>
           <div className="login-right">
             <h1>Welcome</h1>
-            <h3>Want to join US?</h3>
+            <h3>Want to join Us?</h3>
             <Link to='/register'>Register</Link>
           </div>
         </div>

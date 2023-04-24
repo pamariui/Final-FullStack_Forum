@@ -1,0 +1,43 @@
+.create-question {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%-80px;
+  
+  }
+
+.create-question form  {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.create-question form div{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 60%;
+}
+
+@media only screen and (max-width: 600px) {
+    .create-question form div {
+      width: 100%;
+    }
+  }
+
+.create-question form div textarea, .create-question form div input, 
+.create-question form div select {
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+}
+
+.create-question form div textarea{
+    height: 120px;
+}

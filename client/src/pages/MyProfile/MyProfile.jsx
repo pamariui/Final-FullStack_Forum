@@ -4,6 +4,7 @@ import Main from '../../components/Main';
 import Header from '../../components/Header/Header';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
+import './style.css'
 
 const MyProfile = () => {
   const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ const MyProfile = () => {
   const [editingQuestion, setEditingQuestion] = useState(null);
   const [categoryList, setCategoryList] = useState([]);
   const [title, setTitle] = useState('');
-  const[category,setCategory] = useState('');
+  const [category,setCategory] = useState('');
   const [content, setContent] = useState('');
 
   useEffect(() => {
@@ -192,71 +193,78 @@ const MyProfile = () => {
     <>
         <Header username={username} />
         <Main>
-          <div>
-          {questions.map((el, i) => {
-
-            return (
-              <div key={i}>
-                <Card 
-                    title={editingQuestion === el.id ? (
-                            <input type="text" value={title} onChange={(e) =>       setTitle(e.target.value)} />
-                            ) : el.title}
-                    category={editingQuestion === el.id ? (
-                          <select
-                            type="text"
-                            name="category"
-                            value={el.category}
-                            onChange={(e) => setCategory(e.target.value)}
-                          >
-                            <option value="">Select Category</option>
-                                {categoryList.map((category) => (
-                                  <option key={category.id} value={category.id}>
-                                    {category.category}
-                                  </option>
-                                  ))}
-                          </select>
-                          ) : el.category}
-                    content={editingQuestion === el.id ? (
-                      <textarea value={el.content} onChange={(e) => setContent(e.target.value)} />
-                    ) : el.content}
-                    posted={el.updated_at ? ` Updated: ${el.updated_at} `: ` Created: ${el.created_at} ` }
-                    user={el.user}
-              />
-                <div>
-                  {editingQuestion === el.id ? (
-                    <>
-                      <Button onClick={() => handleSaveQuestion(el.id)}>Save</Button>
-                      <Button onClick={() => setEditingQuestion(null)}>Cancel</Button>
-                    </>
-                  ) : (
-                    <Button onClick={() => handleEditQuestion(el.id)}>Edit</Button>
-                  )}
-                  <Button onClick={(event) => handleDeleteQuestion(event, el.id)}>Delete</Button>
+          <div className='myprofile'>
+            <div className='left-myprofile'>
+            {questions.map((el, i) => {
+            
+              return (
+                <div key={i}>
+                  <Card 
+                      cardClass={'question card'} 
+                      title={editingQuestion === el.id ? (
+                              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                              ) : el.title}
+                      category={editingQuestion === el.id ? (
+                            <select
+                              type="text"
+                              name="category"
+                              value={category}
+                              onChange={(e) => setCategory(e.target.value)}
+                            >
+                              <option value="">Select Category</option>
+                                  {categoryList.map((category) => (
+                                    <option key={category.id} value={category.id}>
+                                      {category.category}
+                                    </option>
+                                    ))}
+                            </select>
+                            ) : el.category}
+                      content={editingQuestion === el.id ? (
+                        <textarea 
+                          value={content} 
+                          onChange={(e) => setContent(e.target.value)} 
+                        />
+                      ) : el.content}
+                      posted={el.updated_at ? ` Updated: ${el.updated_at} `: ` Created: ${el.created_at} ` }
+                      user={el.user}
+                      
+                >
+                  <div>
+                    {editingQuestion === el.id ? (
+                      <>
+                        <Button onClick={() => handleSaveQuestion(el.id)}>Save</Button>
+                        <Button onClick={() => setEditingQuestion(null)}>Cancel</Button>
+                      </>
+                      ) : (
+                        <Button onClick={() => handleEditQuestion(el.id)}>Edit</Button>
+                      )}
+                      <Button onClick={(event) => handleDeleteQuestion(event, el.id)}>Delete</Button>
+                    </div>
+                  </Card>      
                 </div>
+              );
+            })}
 
-              </div>
-            );
-          })}
+            </div>
 
-          </div>
-
-          <div>
-              <h1>{username} Welcome to My Profile</h1>
-              <form onSubmit={handleUpdate}>
-              <label>
-                  Email:
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              </label>
-              <br />
-              <label>
-                  Password:
-                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  required/>
-              </label>
-              <br />
-              <button type="submit">Update</button>
-              </form>
-              <br />
-              <button onClick={handleDelete}>Delete Account</button>
+            <div className='right-myprofile'>
+                <h1>{username} Want to change smtg? </h1>
+                <form onSubmit={handleUpdate}>
+                <label>
+                    Email:
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </label>
+                <br />
+                <label>
+                    Password:
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  required/>
+                </label>
+                <br />
+                <button type="submit">Update</button>
+                </form>
+                <br />
+                <button onClick={handleDelete}>Delete Account</button>
+            </div>
           </div>
         </Main>
         <Footer copy={'Marius'} years={'2023 04'} color={'#666666'} />

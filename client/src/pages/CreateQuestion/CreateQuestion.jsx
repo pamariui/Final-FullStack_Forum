@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 import Main from '../../components/Main';
+import './style.css'
 
 const CreateQuestion = () => {
   const [title, setTitle] = useState('');
@@ -30,10 +31,10 @@ const CreateQuestion = () => {
         } catch (error) {
           console.error(error);
           localStorage.removeItem('token');
-          // window.location.href = '/login';
+          window.location.href = '/login';
         }
       } else {
-        // window.location.href = '/login';
+        window.location.href = '/login';
       }
     };
 
@@ -83,7 +84,7 @@ const CreateQuestion = () => {
     <>
       <Header  username={username}  />
       <Main>
-        <div>
+        <div className='create-question'>
           <h1>Create a new question</h1>
           <form onSubmit={handleSubmit}>
             <div>
@@ -118,7 +119,7 @@ const CreateQuestion = () => {
                 onChange={(e) => setContent(e.target.value)}
               />
             </div>
-            <button type="submit">Submit</button>
+            <button className='create' type="submit">Submit</button>
           </form>
         </div>
       </Main>
